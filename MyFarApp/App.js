@@ -1,32 +1,33 @@
-import React from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-
-import AppNavigator from "./src/navigation/AppNavigator";
+/////
 import LittleLemonHeader from "./src/components/Header";
-import Footer from "./src/components/Footer";
+import WelcomeScreen from "./src/components/WelcomeScreen";
+import MenuItems from "./src/components/MenuItems";
+import LittleLemonFooter from "./src/components/Footer";
 
 export default function App() {
   return (
-    <SafeAreaProvider>
+    <>
       <View
-        style={{
-          flex: 1,
-          backgroundColor: "#495E57",
-        }}
+        style={styles.container}
       >
         <LittleLemonHeader />
-        <Text style={styles.title}>Welcome MyApp!</Text>
+        {/* <MenuItems /> */}
+        <WelcomeScreen />
       </View>
-      <View>
-        <Footer />
+      <View style={styles.footer}>
+        <LittleLemonFooter />
       </View>
-    </SafeAreaProvider>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: "center", alignItems: "center" },
-  title: { fontSize: 24, marginBottom: 20 },
+  container: {
+    flex: 1,
+    backgroundColor: "#495E57",
+  },
+  footer: {
+    backgroundColor: "#495E57",
+  },
 });
