@@ -67,6 +67,7 @@ const menuStyles = StyleSheet.create({
     color: '#F4CE14',
     fontSize: 20,
   },
+  
 });
 
 
