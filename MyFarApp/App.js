@@ -8,17 +8,21 @@ import LittleLemonFooter from "./src/components/Footer";
 import MenuItems2 from "./src/components/MenuItems2";
 import MenuItems3 from "./src/components/MenuItems3";
 import FeedbackForm from "./src/components/FeedbackForm";
+import Login from "./src/screens/Login";
+import { LoginScreen } from "./src/components/LoginScreen";
 
 export default function App() {
   return (
     <>
       <View style={styles.container}>
         <LittleLemonHeader />
-        <FeedbackForm />
         {/* <WelcomeScreen /> */}
         {/* <MenuItems /> */}
         {/* <MenuItems2 /> */}
         {/* <MenuItems3 /> */}
+        {/* <FeedbackForm /> */}
+        {/* <Login /> */}
+        <LoginScreen />
       </View>
       <View style={styles.footer}>
         <LittleLemonFooter />
