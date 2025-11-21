@@ -6,12 +6,15 @@ import {
   Text,
   TextInput,
   KeyboardAvoidingView,
-  Platform
+  Platform,
+  Pressable
 } from "react-native";
 
 export const LoginScreen = () => {
   const [email, onChangeEmail] = useState("");
   const [password, onChangePassword] = useState("");
+  const [login, setLogin] = useState(false);
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -19,8 +22,9 @@ export const LoginScreen = () => {
     >
       <ScrollView keyboardDismissMode="on-drag">
         <Text style={styles.headerText}>Welcome to Little Lemon</Text>
-        <Text style={styles.regularText}>Login to continue </Text>
-        <TextInput
+        <Text style={styles.regularText}>{ login  ? "Login to continue" : "Hello"} </Text>
+        {login && (<View>
+          <TextInput
           style={styles.textInput}
           value={email}
           onChange={onChangeEmail}
@@ -36,6 +40,12 @@ export const LoginScreen = () => {
           keyboardType="default"
           secureTextEntry={true}
         />
+        </View>) }
+        <Pressable onPress={() => {setLogin(!login)}}>
+          <Text style={styles.loginBtn}>
+            {login ? 'Login' : 'LogOut'}
+          </Text>
+        </Pressable>
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -57,6 +67,18 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     color: "#EDEFEE",
     textAlign: "center",
+  },
+  loginBtn : {
+     color: "#fad417ff",
+    fontSize: 30,
+    justifyContent: "center",
+    textAlign: "center",
+    padding: 10,
+    margin: 10,
+    marginLeft: 70,
+    marginRight: 70,
+    backgroundColor: "#85848262",
+    borderRadius: 30,
   },
   textInput: {
     height: 50,

@@ -1,4 +1,4 @@
-import { View, Text, Button, StyleSheet, FlatList } from "react-native";
+import { View, Text, Button, StyleSheet, FlatList, Image } from "react-native";
 
 /////
 import LittleLemonHeader from "./src/components/Header";
@@ -10,19 +10,25 @@ import MenuItems3 from "./src/components/MenuItems3";
 import FeedbackForm from "./src/components/FeedbackForm";
 import Login from "./src/screens/Login";
 import { LoginScreen } from "./src/components/LoginScreen";
+import ViewMenu from "./src/components/ViewMenu";
 
 export default function App() {
   return (
     <>
       <View style={styles.container}>
         <LittleLemonHeader />
+        <Image style={styles.logo}
+          source={{
+            uri: "https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/yh3S-4LcQXGO99idg4HpPg_92f701034da44942a42fee3e878fc1a1_LIttle-Lemon-Logo.png?expiry=1763779088047&hmac=ktOBJz4tpCkwek1MkpCTYPmPhKqOFnFKAcgpM5mZVJc",
+          }}
+        />
         {/* <WelcomeScreen /> */}
         {/* <MenuItems /> */}
         {/* <MenuItems2 /> */}
         {/* <MenuItems3 /> */}
         {/* <FeedbackForm /> */}
-        {/* <Login /> */}
         <LoginScreen />
+        {/* <ViewMenu /> */}
       </View>
       <View style={styles.footer}>
         <LittleLemonFooter />
@@ -32,6 +38,11 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  logo: {
+     height: 100,
+     width: 300,
+     resizeMode: 'contain',
+  },
   container: {
     flex: 1,
     backgroundColor: "#333333",
