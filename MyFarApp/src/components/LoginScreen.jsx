@@ -7,44 +7,96 @@ import {
   TextInput,
   KeyboardAvoidingView,
   Platform,
-  Pressable
+  Pressable,
+  ImageBackground,
+  useColorScheme,
 } from "react-native";
 
 export const LoginScreen = () => {
   const [email, onChangeEmail] = useState("");
   const [password, onChangePassword] = useState("");
   const [login, setLogin] = useState(false);
+  const colorScheme = useColorScheme();
+  const [light, setLight] = useState("light");
+  
+  
 
   return (
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
-      <ScrollView keyboardDismissMode="on-drag">
-        <Text style={styles.headerText}>Welcome to Little Lemon</Text>
-        <Text style={styles.regularText}>{ login  ? "Login to continue" : "Hello"} </Text>
-        {login && (<View>
-          <TextInput
-          style={styles.textInput}
-          value={email}
-          onChange={onChangeEmail}
-          keyboardType="email-address"
-          placeholder="Email "
-          clearButtonMode="always"
-        />
-        <TextInput
-          style={styles.textInput}
-          value={password}
-          onChange={onChangePassword}
-          placeholder="Password "
-          keyboardType="default"
-          secureTextEntry={true}
-        />
-        </View>) }
-        <Pressable onPress={() => {setLogin(!login)}}>
-          <Text style={styles.loginBtn}>
-            {login ? 'Login' : 'LogOut'}
+      <ScrollView
+        style={[
+          styles.container,
+          colorScheme === light
+            ? { backgroundColor: "#fff" }
+            : { backgroundColor: "#333333" },
+        ]}
+        keyboardDismissMode="on-drag"
+      >
+        <View style={styles.headerWrapper}>
+          <ImageBackground
+            resizeMode="cover"
+            accessible={true}
+            accessibilityLabel={"Little Lemon Logo"}
+            style={styles.logoImg}
+            source={require("../img/Little_Lemon_logo.png")}
+          />
+          <Text  style={[
+            styles.headerText,
+            colorScheme === light
+              ? { color: '#333333' }
+              : { color: '#EDEFEE' },
+          ]}>Little Lemon</Text>
+        </View>
+        {!login && (
+          <Text
+            style={[
+              styles.infoSection,
+              colorScheme === light
+                ? { color: "#333333" }
+                : { color: "#EDEFEE" },
+            ]}
+          >
+            Little Lemon is a charming neighborhood bistro that serves simple
+            food and classic cocktails in a lively but casual environment. View
+            our menu to explore our cuisine with daily specials!
           </Text>
+        )}
+        {login && (
+          <View>
+            <TextInput
+              style={styles.textInput}
+              value={email}
+              onChange={onChangeEmail}
+              keyboardType="email-address"
+              placeholder="Email "
+              clearButtonMode="always"
+            />
+            <TextInput
+              style={styles.textInput}
+              value={password}
+              onChange={onChangePassword}
+              placeholder="Password "
+              keyboardType="default"
+              secureTextEntry={true}
+            />
+          </View>
+        )}
+        <Pressable
+          onPress={() => {
+            setLogin(!login);
+          }}
+        >
+          <Text style={styles.loginBtn}>{login ? "Login" : "LogOut"}</Text>
+        </Pressable>
+        <Pressable
+          onPress={() => {
+            setLight(light === "light" ? "dark" : "light");
+          }}
+        >
+          <Text style={styles.loginBtn}>{light ? "Dark" : "Light"}</Text>
         </Pressable>
       </ScrollView>
     </KeyboardAvoidingView>
@@ -55,8 +107,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  headerWrapper: {
+    flexDirection: "row",
+    justifyContent: "center",
+    margin: 10,
+  },
   headerText: {
-    padding: 40,
+    paddingRight: 10,
+    paddingLeft: 20,
+    paddingTop: 30,
+    paddingBottom: 10,
     fontSize: 30,
     color: "#EDEFEE",
     textAlign: "center",
@@ -68,8 +128,8 @@ const styles = StyleSheet.create({
     color: "#EDEFEE",
     textAlign: "center",
   },
-  loginBtn : {
-     color: "#fad417ff",
+  loginBtn: {
+    color: "#fad417ff",
     fontSize: 30,
     justifyContent: "center",
     textAlign: "center",
@@ -92,5 +152,18 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     borderColor: "EDEFEE",
     backgroundColor: "white",
+  },
+  infoSection: {
+    fontSize: 20,
+    padding: 10,
+    marginVertical: 8,
+    color: "#EDEFEE",
+    textAlign: "center",
+  },
+  logoImg: {
+    margin: 10,
+    padding: 10,
+    height: 70,
+    width: 80,
   },
 });
