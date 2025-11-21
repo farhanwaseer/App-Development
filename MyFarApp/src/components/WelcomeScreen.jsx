@@ -21,14 +21,14 @@ const styles = StyleSheet.create({
   title: {
     padding: 40,
     fontSize: 50,
-    color: "#EDEFEE",
+    color: "#131816ff",
     textAlign: "center",
   },
   para: {
     fontSize: 24,
     padding: 20,
     marginVertical: 8,
-    color: "#EDEFEE",
+    color: "#0d0e0dff",
     textAlign: "center",
   },
 });

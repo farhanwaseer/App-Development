@@ -11,13 +11,14 @@ import {
   ImageBackground,
   useColorScheme,
 } from "react-native";
+import { Navbar } from "./MenuItems3";
 
 export const LoginScreen = () => {
   const [email, onChangeEmail] = useState("");
   const [password, onChangePassword] = useState("");
   const [login, setLogin] = useState(false);
-  const colorScheme = useColorScheme();
   const [light, setLight] = useState("light");
+  const colorScheme = useColorScheme();
   
   
 
@@ -26,6 +27,7 @@ export const LoginScreen = () => {
       style={styles.container}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
+      <Navbar />
       <ScrollView
         style={[
           styles.container,
